@@ -114,7 +114,7 @@ class ZhihuAccount(object):
         :return:
         """
         resp = self.session.get(self.login_url)
-        token = re.findall(r'_xsrf=([\w|-]+)', resp.headers.get('Set-Cookie'))[0]
+        token = resp.cookies['_xsrf']
         return token
 
     def _get_captcha(self, headers):
